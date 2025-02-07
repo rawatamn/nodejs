@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+  border: 2px solid black;
+  
+}
+    </style>
+</head>
+<body>
+    <h2>Student Portal</h2>
+    <Form id="StdFrm">
+        <input type="text" id="student" placeholder="Enter the name"><br>
+
+        <input type="text" id="marks1" placeholder="Enter the marks1">
+        <input type="text" id="marks2" placeholder="Enter the marks2">
+        <input type="text" id="marks3" placeholder="Enter the marks3">
+        <input type="text" id="marks4" placeholder="Enter the marks4">
+        <input type="text" id="marks5" placeholder="Enter the marks5">
+        <button type="submit">Add student</button>
+    </Form>
+    <h3>Student list</h3>
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Average</td>
+            </tr>
+        </thead>
+        <tbody id="tbdy"></tbody>
+    </table>
+    <p>Top student:<span id="topstdnt">None</span></p>
+    
+    <p>Top student Avg:<span id="topstdntavg">0</span></p>
+    <script>
+        
+        document.getElementById("StdFrm").addEventListener("submit",function(event){
+            event.preventDefault();
+            let name=document.getElementById("student").value;
+            let marks=[]
+            
+            for(let i=1;i<6;i++){
+               let mark=parseFloat(document.getElementById(`marks${i}`).value)
+            
+            if(!name){
+                alert("enter a name")
+            }
+            if(isNaN(mark)||mark<0||mark>100){
+                alert("please enter valid marks")
+                return
+            }
+       marks.push(mark)
+       state=true
+       } 
+    const avg=marks.reduce((x,y)=>x+y,0)/marks.length
+    let tablebody=document.getElementById("tbdy")
+    let tRow=tablebody.insertRow()
+    tRow.insertCell(0).textContent=name
+    tRow.insertCell(1).textContent=avg
+    document.getElementById("student").value=" "
+    for(let i=1;i<=5;i++){
+        document.getElementById(`marks${i}`).value=" "
+    }
+updte()
+     })
+     function updte(){
+        let tablebody=document.getElementById("tbdy")
+        let rows=document.getElementsByTagName('tr')
+        let totalmarks=0,highestmarks=-1,topstdnt="none";
+        for(let row of rows){
+            let topname=row.cells[0].textContent;
+            let avgMarks=parseFloat(row.cells[1].textContent)
+            totalmarks+=avgMarks
+            if(avgMarks>highestmarks){
+                highestmarks=avgMarks
+            topname=topname
+            }
+            document.getElementById('topstdnt').textContent=topname
+            document.getElementById("topstdntavg").textContent=highestmarks
+        }
+     }
+    </script>
+</body>
+</html>

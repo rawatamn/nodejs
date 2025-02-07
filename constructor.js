@@ -9,4 +9,4 @@ person3.name = "Mike";
 person3.city="H.p"
 person3.greet();  // Output: Hello, my name is Mike
 console.log(person3)
-console.log(typeof null); // "object"
+
