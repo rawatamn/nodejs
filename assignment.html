@@ -70,14 +70,14 @@ updte()
      function updte(){
         let tablebody=document.getElementById("tbdy")
         let rows=document.getElementsByTagName('tr')
-        let totalmarks=0,highestmarks=-1,topstdnt="none";
+        let highestmarks=-1,topstdnt="none";
         for(let row of rows){
             let topname=row.cells[0].textContent;
             let avgMarks=parseFloat(row.cells[1].textContent)
-            totalmarks+=avgMarks
+            
             if(avgMarks>highestmarks){
                 highestmarks=avgMarks
-            topname=topname
+            topstdnt=topname
             }
             document.getElementById('topstdnt').textContent=topname
             document.getElementById("topstdntavg").textContent=highestmarks
