@@ -1,0 +1,5 @@
+class arrayProcess{
+    constructor(arr){
+        
+    }
+}
